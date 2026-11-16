@@ -2,6 +2,10 @@
 .*
 !.gitignore
 
+# Python bytecode caches.
+__pycache__/
+*.py[cod]
+
 # Build directories.
 build/
 bin/
