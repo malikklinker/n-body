@@ -8,13 +8,21 @@ Requires a C++23-capable GCC or Clang compiler and GNU Make.
 
 ```sh
 make -j4
-./build/debug/nbody 1000 0.01
+./build/debug/nbody initial_conditions.txt
 ```
 
-Arguments are the number of iterations and timestep, both positive. To build and run in one command:
+Pass a configuration file. Its first line contains the iteration count and timestep; each remaining line defines a body as `mass x y px py` (momentum, not velocity). For example:
+
+```text
+1000 0.01
+1.0 0.0 0.0 0.0 0.0
+0.01 0.0 -1.0 0.01 0.0
+```
+
+Iterations, timestep, and masses must be positive, all numeric values finite, and body positions distinct. Blank lines and comments are not supported. To build and run in one command:
 
 ```sh
-make run RUN_ARGS="1000 0.01"
+make run RUN_ARGS="initial_conditions.txt"
 ```
 
 Use `make release` for an optimized build, `make sanitize` for a sanitizer build, and `make clean` to remove build files. Executables are stored in `build/<mode>/`.
@@ -37,6 +45,6 @@ MPLBACKEND=Agg python3 plotter.py
 
 ## Notes
 
-- Change the `bodies` initializer in `main.cpp` to set masses, positions, and momenta. The default is a two-body example.
+- Edit `initial_conditions.txt` or pass another configuration file to change the bodies or run settings. The included file is a two-body example.
 - States are saved before each step; the state after the last step is not included.
 - Gravity calculations scale as O(N²). There is no collision handling or gravitational softening; coincident positions cause division by zero, and close encounters may require smaller timesteps.
