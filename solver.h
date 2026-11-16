@@ -1,5 +1,6 @@
 #pragma once
 
+#include <cstddef>
 #include <vector>
 
 struct Vec2 {
@@ -7,7 +8,7 @@ struct Vec2 {
   double y;
 
   Vec2& operator+=(const Vec2& other) {
-    x += other.x;
+   x += other.x;
     y += other.y;
     return *this;
   }
@@ -40,3 +41,5 @@ double norm(const Vec2& vector_in);
 Vec2 body_acceleration(const Body& body, const Body& other_body);
 Vec2 compute_acceleration_per_body(const std::vector<Body>& bodies, const Body& body);
 std::vector<Vec2> compute_acceleration(const std::vector<Body>& bodies);
+
+void take_step(std::vector<Body> &bodies, double dt);

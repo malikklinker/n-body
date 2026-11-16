@@ -1,0 +1,50 @@
+[
+  {
+    "file": "main.cpp",
+    "arguments": [
+      "/etc/profiles/per-user/malikk/bin/c++",
+      "-std=c++23",
+      "-O0",
+      "-g3",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-MMD",
+      "-MP",
+      "-MF",
+      "build/debug/main.cpp.d",
+      "-MT",
+      "build/debug/main.cpp.o",
+      "-c",
+      "main.cpp",
+      "-o",
+      "build/debug/main.cpp.o"
+    ],
+    "directory": "/home/malikk/Projects/n-body",
+    "output": "build/debug/main.cpp.o"
+  },
+  {
+    "file": "solver.cpp",
+    "arguments": [
+      "/etc/profiles/per-user/malikk/bin/c++",
+      "-std=c++23",
+      "-O0",
+      "-g3",
+      "-Wall",
+      "-Wextra",
+      "-Wpedantic",
+      "-MMD",
+      "-MP",
+      "-MF",
+      "build/debug/solver.cpp.d",
+      "-MT",
+      "build/debug/solver.cpp.o",
+      "-c",
+      "solver.cpp",
+      "-o",
+      "build/debug/solver.cpp.o"
+    ],
+    "directory": "/home/malikk/Projects/n-body",
+    "output": "build/debug/solver.cpp.o"
+  }
+]

@@ -1,1 +1,29 @@
-/build/
+# Hidden files and directories, except this ignore file.
+.*
+!.gitignore
+
+# Build directories.
+build/
+bin/
+obj/
+
+# Compiled objects and compiler-generated dependencies.
+*.o
+*.obj
+*.d
+*.gch
+*.pch
+
+# Libraries and executables.
+*.a
+*.lib
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+
+# Debug symbols.
+*.pdb
+*.dSYM/

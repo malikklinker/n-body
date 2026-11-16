@@ -33,3 +33,21 @@ std::vector<Vec2> compute_acceleration(const std::vector<Body>& bodies){
   }
   return body_accelerations;
 }
+void take_step(std::vector<Body> &bodies, double dt) {
+  std::vector<Vec2> accelerations_old = compute_acceleration(bodies);
+
+  for (std::size_t i = 0; i < bodies.size(); i++) {
+    Body &body = bodies[i];
+    body.position = body.position + (dt / body.mass) * body.momentum +
+                    (dt * dt / 2) * accelerations_old[i];
+  }
+
+  std::vector<Vec2> accelerations_new = compute_acceleration(bodies);
+
+  for (std::size_t i = 0; i < bodies.size(); i++) {
+    Body &body = bodies[i];
+    body.momentum =
+        body.momentum +
+        (body.mass * dt / 2) * (accelerations_old[i] + accelerations_new[i]);
+  }
+}
