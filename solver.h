@@ -31,6 +31,10 @@ inline Vec2 operator*(double scalar, const Vec2& vector) {
   return vector * scalar;
 }
 
+inline double operator*(Vec2 vector1, Vec2 vector2) {
+  return vector1.x*vector2.x+vector1.y*vector2.y;
+}
+
 struct Body {
   double mass;
   Vec2 position;
@@ -43,3 +47,5 @@ Vec2 compute_acceleration_per_body(const std::vector<Body>& bodies, const Body& 
 std::vector<Vec2> compute_acceleration(const std::vector<Body>& bodies);
 
 void take_step(std::vector<Body> &bodies, double dt);
+
+double compute_total_energy(std::vector<Body> &bodies);

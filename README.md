@@ -21,18 +21,18 @@ Use `make release` for an optimized build, `make sanitize` for a sanitizer build
 
 ## Plotting
 
-The simulator writes `trajectory.csv` in the working directory, overwriting previous output. Each row contains `time,body_index,x,y`.
+The simulator writes `trajectory.csv` (`time,body_index,x,y`) and `energies.csv` (`time,energy`) in the working directory, overwriting previous output.
 
-With Python and Matplotlib installed:
+With Python, NumPy, and Matplotlib installed:
 
 ```sh
 python3 plotter.py
 ```
 
-This saves `image.pdf` and opens the plot. To save without a window:
+This reads both CSV files, plots trajectories and total energy side by side, saves `image.pdf`, and opens the plot. To run without a graphical display:
 
 ```sh
-python3 plotter.py trajectory.csv -o orbits.png --no-show
+MPLBACKEND=Agg python3 plotter.py
 ```
 
 ## Notes

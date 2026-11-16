@@ -8,10 +8,11 @@
 #include <string_view>
 #include <vector>
 
-void inline fileio(std::ofstream &output, std::size_t iterations, double dt, std::vector<Body> &bodies) {
+void inline fileio(std::ofstream &output, std::ofstream& energy_file, std::size_t iterations, double dt, std::vector<Body> &bodies) {
   double time = 0;
 
   for (std::size_t i = 0; i < iterations; i++) {
+    energy_file << time << ',' << compute_total_energy(bodies) << '\n';
     for (std::size_t j = 0; j < bodies.size(); j++) {
       Body &body = bodies[j];
 
@@ -67,11 +68,18 @@ int main(int argc, char *argv[]) {
     output.exceptions(std::ios::failbit | std::ios::badbit);
     output.open("trajectory.csv");
 
-    output << "time,body_index,x,y\n";
+    std::ofstream energy_file;
+    energy_file.exceptions(std::ios::failbit | std::ios::badbit);
+    energy_file.open("energies.csv");
 
-    fileio(output, iterations, dt, bodies);
+    output << "time,body_index,x,y\n";
+    energy_file << "time,energy\n";
+
+    fileio(output, energy_file, iterations, dt, bodies);
 
     output.close();
+
+    
 
     return 0;
 

@@ -51,3 +51,17 @@ void take_step(std::vector<Body> &bodies, double dt) {
         (body.mass * dt / 2) * (accelerations_old[i] + accelerations_new[i]);
   }
 }
+double compute_total_energy(std::vector<Body> &bodies) {
+  double energy = 0;
+  for (std::size_t i = 0; i < bodies.size(); i++) {
+    Body &body = bodies[i];
+    energy += body.momentum * body.momentum / (2 * body.mass);
+    for (std::size_t j = 0; j < bodies.size(); j++) {
+      if (i < j) {
+        Body &body2 = bodies[j];
+        energy -= body.mass * body2.mass / norm(body.position - body2.position);
+      }
+    }
+  }
+  return energy;
+}
